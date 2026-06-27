@@ -21,6 +21,9 @@ let isAudioPlaying = false;
 // Screen Wake Lock variable
 let wakeLock = null;
 
+// PWA Install prompt reference
+let deferredPrompt = null;
+
 // DOM Elements
 const mainMessageEl = document.getElementById("mainMessage");
 const subMessageEl = document.getElementById("subMessage");
@@ -38,6 +41,10 @@ const breathingCircle = document.getElementById("breathingCircle");
 const ambientGlow = document.getElementById("ambientGlow");
 const batteryWarningModal = document.getElementById("batteryWarningModal");
 const batteryWarningOkBtn = document.getElementById("batteryWarningOkBtn");
+const installSection = document.getElementById("installSection");
+const installBtn = document.getElementById("installBtn");
+const iosInstallSection = document.getElementById("iosInstallSection");
+const clockEl = document.getElementById("clock");
 
 // Initialize application
 function init() {
@@ -93,6 +100,43 @@ function init() {
     e.preventDefault();
   });
 
+  // Initialize the clock and set up interval
+  updateClock();
+  setInterval(updateClock, 1000);
+
+  // Setup PWA install promotion button trigger
+  window.addEventListener("beforeinstallprompt", (e) => {
+    // Prevent the mini-infobar from appearing on mobile
+    e.preventDefault();
+    // Stash the event so it can be triggered later.
+    deferredPrompt = e;
+    // Show the install section inside the settings panel
+    if (installSection) {
+      installSection.style.display = "block";
+    }
+  });
+
+  // Handle install button click
+  if (installBtn) {
+    installBtn.addEventListener("click", async () => {
+      if (!deferredPrompt) return;
+      // Show the install prompt
+      deferredPrompt.prompt();
+      // Wait for the user to respond to the prompt
+      const { outcome } = await deferredPrompt.userChoice;
+      console.log(`User response to the install prompt: ${outcome}`);
+      // We've used the prompt, and can't use it again
+      deferredPrompt = null;
+      // Hide the install section
+      if (installSection) {
+        installSection.style.display = "none";
+      }
+    });
+  }
+
+  // Handle detection and display of iOS PWA installation instructions
+  detectIosInstallPromotion();
+
   // Close modal when clicking outside of it
   settingsModal.addEventListener("click", (e) => {
     if (e.target === settingsModal) {
@@ -139,8 +183,15 @@ function displayMessage(index) {
   }, 300);
 }
 
-// Transition to the next message
+// Transition to the next message and request fullscreen on mobile
 function nextMessage() {
+  // Request native browser fullscreen on user interaction
+  if (!document.fullscreenElement) {
+    document.documentElement.requestFullscreen().catch((err) => {
+      // Browser didn't allow fullscreen, which is common if it is desktop or blocked, ignore.
+    });
+  }
+
   currentMessageIndex = (currentMessageIndex + 1) % messages.length;
   displayMessage(currentMessageIndex);
 }
@@ -362,6 +413,27 @@ async function releaseWakeLock() {
       wakeLock = null;
     } catch (err) {
       console.warn(`Wake lock release failed: ${err.message}`);
+    }
+  }
+}
+
+// Update digital clock display
+function updateClock() {
+  if (!clockEl) return;
+  const now = new Date();
+  const hours = String(now.getHours()).padStart(2, "0");
+  const minutes = String(now.getMinutes()).padStart(2, "0");
+  clockEl.textContent = `${hours}:${minutes}`;
+}
+
+// Detect iOS devices in standard browser (non-standalone mode)
+function detectIosInstallPromotion() {
+  const isIos = /iPad|iPhone|iPod/.test(navigator.userAgent) && !window.MSStream;
+  const isStandalone = window.navigator.standalone === true || window.matchMedia("(display-mode: standalone)").matches;
+  
+  if (isIos && !isStandalone) {
+    if (iosInstallSection) {
+      iosInstallSection.style.display = "block";
     }
   }
 }

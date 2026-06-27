@@ -312,3 +312,44 @@ textarea:focus {
     height: 200px;
   }
 }
+
+/* Clock Styling */
+.clock-header {
+  width: 100%;
+  text-align: center;
+  padding-top: 10px;
+  z-index: 10;
+}
+
+.clock {
+  font-family: 'Outfit', sans-serif;
+  font-size: 1.6rem;
+  font-weight: 300;
+  color: rgba(255, 183, 77, 0.45); /* Dim warm amber */
+  letter-spacing: 2px;
+  text-shadow: 0 0 10px rgba(255, 183, 77, 0.1);
+  transition: opacity 0.5s ease;
+}
+
+/* Modal Divider & Install section */
+.modal-divider {
+  border: 0;
+  height: 1px;
+  background: rgba(255, 255, 255, 0.1);
+  margin: 12px 0;
+}
+
+.install-section {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  text-align: left;
+}
+
+.install-section h3 {
+  font-family: 'Outfit', sans-serif;
+  font-size: 1.1rem;
+  font-weight: 500;
+  color: #ffb74d;
+  margin-bottom: 2px;
+}

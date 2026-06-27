@@ -23,6 +23,11 @@
   <div class="ambient-glow" id="ambientGlow"></div>
 
   <div class="app-container">
+    <!-- Digital Clock (Dim, warm) -->
+    <header class="clock-header">
+      <div class="clock" id="clock">00:00</div>
+    </header>
+
     <!-- Breathing Guide & Pulsing Circle -->
     <div class="breathing-circle-container">
       <div class="breathing-circle" id="breathingCircle"></div>
@@ -66,11 +71,27 @@
       <h2>Muokkaa viestejä</h2>
       <p class="modal-desc">Kirjoita lauseita omalle rivilleen. Yöllä voit vaihtaa viestiä vain napauttamalla ruutua.</p>
       
-      <textarea id="messagesInput" rows="6" placeholder="Yksi viesti per rivi..."></textarea>
+      <textarea id="messagesInput" rows="5" placeholder="Yksi viesti per rivi..."></textarea>
       
       <div class="modal-actions">
         <button class="modal-btn secondary" id="resetBtn">Oletukset</button>
         <button class="modal-btn primary" id="saveBtn">Tallenna</button>
+      </div>
+
+      <hr class="modal-divider">
+
+      <!-- PWA Installation helper inside settings -->
+      <div class="install-section" id="installSection" style="display: none;">
+        <h3>Asenna sovelluksena</h3>
+        <p class="modal-desc">Asenna sovellus puhelimesi kotinäyttöön, jotta se toimii koko näytöllä ja 100% offline-tilassa.</p>
+        <button class="modal-btn primary" id="installBtn" style="background: #a5d6a7; color: #000; margin-top: 8px; font-weight: 600;">Lataa kotinäyttöön</button>
+      </div>
+
+      <div class="install-section" id="iosInstallSection" style="display: none;">
+        <h3>Asenna sovelluksena</h3>
+        <p class="modal-desc" style="font-size: 0.85rem; line-height: 1.4;">
+          <strong>iOS Safari:</strong> Paina alavalikon <strong>Jaa</strong>-kuvaketta (laatikko, jossa nuoli ylös) ja valitse valikosta <strong>"Lisää koti-valikkoon"</strong>.
+        </p>
       </div>
       
       <button class="close-modal" id="closeModalBtn" aria-label="Sulje">&times;</button>
