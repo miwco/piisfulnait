@@ -18,6 +18,7 @@ A minimalist, premium night-time calm and reassurance Progressive Web App (PWA) 
 * **Screen Wake Lock**: Automatically requests to keep your phone screen active while reading or breathing.
 * **Smart Auto-Lock & Battery Protection**: Automatically monitors your battery level. If the battery falls below **15%**, it releases the screen wake lock and displays a peaceful warning, allowing the phone to naturally sleep and lock itself.
 * **Fullscreen API Integration**: Tapping the screen to cycle reassurance messages automatically requests native browser fullscreen mode to hide any remaining browser search bars.
+* **Instant Updates & Auto-Reload**: Uses a "Network-First" caching policy. The app loads the freshest version from the server immediately when you have an active network connection, and automatically reloads in the background to apply updates when they are pushed. It still retains offline access as a fallback.
 
 ---
 

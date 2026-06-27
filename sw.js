@@ -32,14 +32,28 @@ self.addEventListener('activate', (e) => {
   );
 });
 
-// Fetch assets from cache, fallback to network
+// Fetch assets from network first, update cache, fallback to cache if offline
 self.addEventListener('fetch', (e) => {
+  // Only handle GET requests for caching
+  if (e.request.method !== 'GET') {
+    return;
+  }
+  
   e.respondWith(
-    caches.match(e.request).then((cachedResponse) => {
-      if (cachedResponse) {
-        return cachedResponse;
-      }
-      return fetch(e.request);
-    })
+    fetch(e.request)
+      .then((response) => {
+        // If response is valid, clone it and update the cache
+        if (response && response.status === 200 && response.type === 'basic') {
+          const responseCopy = response.clone();
+          caches.open(CACHE_NAME).then((cache) => {
+            cache.put(e.request, responseCopy);
+          });
+        }
+        return response;
+      })
+      .catch(() => {
+        // If network request fails (offline), fallback to cache
+        return caches.match(e.request);
+      })
   );
 });

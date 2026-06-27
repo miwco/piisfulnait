@@ -78,7 +78,20 @@ function init() {
   // Register Service Worker for PWA offline support
   if ("serviceWorker" in navigator) {
     navigator.serviceWorker.register("./sw.js")
-      .then((reg) => console.log("Service Worker registered", reg))
+      .then((reg) => {
+        console.log("Service Worker registered", reg);
+        
+        // Listen for updates and auto-reload to load fresh code
+        reg.addEventListener("updatefound", () => {
+          const newWorker = reg.installing;
+          newWorker.addEventListener("statechange", () => {
+            if (newWorker.state === "installed" && navigator.serviceWorker.controller) {
+              console.log("New version detected, auto-reloading...");
+              window.location.reload();
+            }
+          });
+        });
+      })
       .catch((err) => console.warn("Service Worker registration failed", err));
   }
 
