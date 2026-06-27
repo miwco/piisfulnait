@@ -4,7 +4,7 @@ A minimalist, premium night-time calm and reassurance Progressive Web App (PWA) 
 
 <p align="center">
   <img src="icon.jpg" alt="Kaikki hyvin Logo" width="120" height="120" style="border-radius: 24px; vertical-align: middle; margin-right: 20px; box-shadow: 0 5px 15px rgba(255, 167, 38, 0.2);" />
-  <img src="screenshot.jpg" alt="Kaikki hyvin Phone Screenshot" width="220" style="border-radius: 24px; vertical-align: middle; box-shadow: 0 10px 30px rgba(0,0,0,0.8);" />
+  <img src="screenshot.jpg" alt="Kaikki hyvin Phone Screenshot" width="120" style="border-radius: 24px; vertical-align: middle; box-shadow: 0 10px 30px rgba(0,0,0,0.8);" />
 </p>
 
 ---
