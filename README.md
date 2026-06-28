@@ -21,28 +21,32 @@ A minimalist, premium night-time calm and reassurance Progressive Web App (PWA) 
 * **Fullscreen API Integration**: Tapping the screen to cycle reassurance messages automatically requests native browser fullscreen mode to hide any remaining browser search bars.
 * **Instant Updates & Auto-Reload**: Uses a "Network-First" caching policy. The app loads the freshest version from the server immediately when you have an active network connection, and automatically reloads in the background to apply updates when they are pushed. It still retains offline access as a fallback.
 
+## How to Use & Install on Your Phone
+
+You can instantly use the app live by visiting: **[piisfulnait.vercel.app](https://piisfulnait.vercel.app/)**
+
+To install it on your phone as a fullscreen, offline-capable **Progressive Web App (PWA)**:
+
+### 1. On iOS (iPhone / iPad)
+1. Open **[piisfulnait.vercel.app](https://piisfulnait.vercel.app/)** in **Safari**.
+2. Tap the **Share** button (box with an arrow pointing up) in Safari's bottom toolbar.
+3. Scroll down and select **"Add to Home Screen"** (*Lisää koti-valikkoon*).
+4. Launch the app from your home screen icon.
+
+### 2. On Android (Chrome / Edge)
+1. Open **[piisfulnait.vercel.app](https://piisfulnait.vercel.app/)** in **Chrome** or **Edge**.
+2. Tap **"Muokkaa"** (Edit) at the bottom right.
+3. Under the **"Asenna sovelluksena"** section, tap **"Lataa kotinäyttöön"** (*or select "Install app" / "Add to Home Screen" from the browser menu*).
+4. Launch the app from your home screen icon.
+
 ---
 
-## Setup & Mobile Installation (PWA)
+## Hosting Your Own Instance (Optional)
 
-To run this app on your phone with a fullscreen native-app experience, you can install it as a **Progressive Web App (PWA)**:
-
-### 1. Host it on Vercel (or any static host)
-1. Go to [Vercel.com](https://vercel.com) and log in with your GitHub account.
-2. Click **"Add New"** > **"Project"** and import the `piisfulnait` repository.
-3. Click **"Deploy"**. You will receive a permanent HTTPS link (e.g. `https://your-app.vercel.app`).
-
-### 2. Install on iOS (iPhone / iPad)
-1. Open your Vercel deployment link in **Safari**.
-2. Tap the **Share** button (box with an arrow pointing up) at the bottom.
-3. Scroll down and select **"Add to Home Screen"**.
-4. Launch the app from your home screen.
-
-### 3. Install on Android (Chrome / Edge)
-1. Open your Vercel deployment link in **Chrome** or **Edge**.
-2. Tap **"Muokkaa"** (Edit) at the bottom right.
-3. Under the **"Asenna sovelluksena"** section, tap **"Lataa kotinäyttöön"**.
-4. (Or select "Install app" / "Add to Home Screen" from Chrome's top-right menu).
+If you wish to deploy and host your own copy of this app:
+1. Log in to [Vercel.com](https://vercel.com) with your GitHub account.
+2. Click **"Add New"** > **"Project"** and import your fork of this repository.
+3. Click **"Deploy"** (Vercel automatically serves static files without any build setup).
 
 ---
 

@@ -1,11 +1,11 @@
 // Default reassurance messages
 const DEFAULT_MESSAGES = [
-"Kaikki hyvin!! Sun ei tarvii tehä nyt yhtään mitään!",
-"NOA nukkuu omassa sängyssä eikä tarvitse tulla herätetyksi!",
-"NYT ON YÖ! Silloin nukutaan!",
-"Mitään ei ole unohtunut!",
-"MENE TAKASIN NUKKUMAAN LOL!",
-
+  "Kaikki hyvin!",
+  "Olet omassa sängyssäsi.",
+  "Kaikki työt on hoidettu.",
+  "Mitään ei ole unohtunut.",
+  "Sinulla ei ole kiire mihinkään.",
+  "Voit nukkua rauhassa."
 ];
 
 let messages = [...DEFAULT_MESSAGES];
